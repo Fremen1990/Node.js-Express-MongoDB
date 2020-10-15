@@ -1,0 +1,1 @@
+module.exports.readModuleName = () => console.log("myModule")
