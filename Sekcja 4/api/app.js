@@ -6,8 +6,9 @@ const fetch = require('node-fetch');
 
 // console.log(process.argv)
 
-const year = process.argv[2];
-// console.log(year)
+const year = process.argv[2] || Math.floor(Math.random() * 2020);
+
+console.log(year)
 
 fetch(`http://numbersapi.com/1990/${year}?json`)
     .then(response => {
