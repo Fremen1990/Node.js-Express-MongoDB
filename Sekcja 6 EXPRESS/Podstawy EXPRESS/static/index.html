@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <a href="">I am link</a>
+
+
+    <script>
+
+        const name = "Somebody"
+
+        const surename = "Test Person"
+
+        const url = `http://localhost:9000/?name=${encodeURIComponent(name)}&surename=${encodeURIComponent(surename)}`;
+
+        const a = document.querySelector('a');
+
+        a.setAttribute('href', url);
+
+    </script>
+</body>
+
+</html>
