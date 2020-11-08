@@ -8,10 +8,13 @@ app.listen(9000, () => {
 
 app.all('/', (req) => {
     // console.log("Welcome Traveller")
-    console.log("req.url", req.url);
-    console.log("req.originalUrl", req.originalUrl);
-    console.log("req.path", req.path)
-    console.log("req.protocol", req.protocol)
-    console.log("req.secure", req.secure)
-})
+    // console.log("req.url", req.url);
+    // console.log("req.originalUrl", req.originalUrl);
+    // console.log("req.path", req.path)
+    // console.log("req.protocol", req.protocol)
+    // console.log("req.secure", req.secure)
 
+    const { name, surename } = req.query;
+
+    console.log(`Hello ${name} ${surename}!!`)
+})
