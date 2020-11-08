@@ -9,21 +9,44 @@
 
 <body>
 
+    <form action="">
 
+        Imię: <br>
+        <input type="text" id="nameInput"><br>
+        Nazwisko: <br>
+        <input type="text" id="surenameInput"><br>
+        <button type="submit">Create link</button>
+
+    </form>
     <a href="">I am link</a>
 
 
     <script>
 
-        const name = "Somebody"
+        const nameInput = document.querySelector('#nameInput')
+        const surenameInput = document.querySelector('#surenameInput')
+        const form = document.querySelector('form')
+        const a = document.querySelector('a')
 
-        const surename = "Test Person"
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
 
-        const url = `http://localhost:9000/?name=${encodeURIComponent(name)}&surename=${encodeURIComponent(surename)}`;
+            const name = nameInput.value;
+            const surename = surenameInput.value;
 
-        const a = document.querySelector('a');
+            const params = new URLSearchParams({
+                name,
+                surename,
+            })
 
-        a.setAttribute('href', url);
+            const url = `http://localhost:9000/?` + params;
+
+            // const url = `http://localhost:9000/?name=${encodeURIComponent(name)}&surename=${encodeURIComponent(surename)}`;
+
+            a.setAttribute('href', url);
+            console.log(url)
+        })
+
 
     </script>
 </body>
