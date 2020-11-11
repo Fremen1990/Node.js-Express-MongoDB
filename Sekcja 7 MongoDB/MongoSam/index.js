@@ -12,6 +12,10 @@ client.connect(err => {
 
         const cars = db.collection('cars')
 
+        cars.deleteOne({ _id: mongo.ObjectID("5fac6e97f0d6e3516f39b8a6") })
+
+
+
         client.close();
 
 
