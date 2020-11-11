@@ -36,7 +36,6 @@ function fillQuestionElements(data) {
     };
 }
 
-
 function showNextQuestion() {
     fetch('/question', {
         method: 'GET',
@@ -47,7 +46,6 @@ function showNextQuestion() {
         })
 }
 showNextQuestion()
-
 
 
 const goodAnsersSpan = document.querySelector('#good-answers')
@@ -84,7 +82,6 @@ for (const button of buttons) {
         tipDiv.innerText = data.text
     }
 
-
     function callToFriend() {
         console.log("wsgsr")
         fetch('/help/friend', {
@@ -95,15 +92,8 @@ for (const button of buttons) {
                 handleFriendAnswer(data)
             })
     }
-
 }
-
 document.querySelector("#callToFriend").addEventListener("click", (callToFriend))
-
-
-
-
-
 
 
 function handleHalfOnHalf(data) {
@@ -130,3 +120,22 @@ function halfOnHalf() {
 }
 
 document.querySelector("#halfOnHalf").addEventListener("click", (halfOnHalf))
+
+
+
+///////////////////////////////////////////////////////////
+
+function handleQuesionToTheCrowd(data) {
+    console.log(data)
+}
+function quesionToTheCrowd() {
+    fetch('/help/crowd', {
+        method: 'GET',
+    })
+        .then(r => r.json())
+        .then(data => {
+            handleQuesionToTheCrowd(data)
+        })
+}
+
+document.querySelector("#quesionToTheCrowd").addEventListener("click", (quesionToTheCrowd))
