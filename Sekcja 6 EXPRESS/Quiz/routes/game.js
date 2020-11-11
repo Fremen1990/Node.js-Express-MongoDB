@@ -121,7 +121,7 @@ function gameRoutes(app) {
 
         console.log(answersCopy)
 
-        answersCopy.splice(~~(Math.random() * answersCopy.length))
+        answersCopy.splice(~~(Math.random() * answersCopy.length), 1)
 
         res.json({
             answersToRemove: answersCopy,

@@ -103,8 +103,21 @@ document.querySelector("#callToFriend").addEventListener("click", (callToFriend)
 
 
 
+
+
+
 function handleHalfOnHalf(data) {
-    console.log(data)
+    if (typeof data.text === "string") {
+        const tipDiv = document.querySelector("#tip");
+        tipDiv.innerText = data.text;
+    } else {
+        for (const button of buttons) {
+            if (data.answersToRemove.indexOf(button.innerText) > -1) {
+                button.innerText = "";
+            }
+        }
+
+    }
 }
 function halfOnHalf() {
     fetch('/help/half', {
