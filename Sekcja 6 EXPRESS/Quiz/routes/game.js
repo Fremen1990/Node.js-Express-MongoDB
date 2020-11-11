@@ -69,8 +69,9 @@ function gameRoutes(app) {
         if (isGoodAnswer) {
             goodAnswers++
             console.log(goodAnswers)
-        } else {
-            isGameOver: true;
+        } else if (!isGoodAnswer) {
+
+            isGameOver = true;
         }
 
         res.json({
@@ -79,7 +80,55 @@ function gameRoutes(app) {
         })
 
     })
+    app.get('/help/friend', (req, res) => {
 
+        if (callToFriendUsed) {
+            return res.json({
+                text: "This tip has been used"
+            })
+
+        }
+        callToFriendUsed = true
+
+        const doesFriendKnowAnswer = Math.random() < 0.5
+        console.log(doesFriendKnowAnswer)
+        const question = questions[goodAnswers];
+
+        res.json({
+            text: doesFriendKnowAnswer ? `hmm.. i think that answer is ${question.answers[question.correctAnswer]}` : "hmm.. have no idea.. :|"
+        })
+
+
+    })
+
+
+
+    app.get('/help/half', (req, res) => {
+
+        if (halfOnHalfUsed) {
+            return res.json({
+                text: "This tip has been used"
+            })
+
+        }
+        halfOnHalfUsed = true;
+
+        const question = questions[goodAnswers];
+
+        const answersCopy = question.answers.filter((s, index) =>
+            index !== question.correctAnswer,
+        )
+
+        console.log(answersCopy)
+
+        answersCopy.splice(~~(Math.random() * answersCopy.length))
+
+        res.json({
+            answersToRemove: answersCopy,
+        })
+
+
+    })
 
 }
 module.exports = gameRoutes;
