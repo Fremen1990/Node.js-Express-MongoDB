@@ -126,7 +126,16 @@ document.querySelector("#halfOnHalf").addEventListener("click", (halfOnHalf))
 ///////////////////////////////////////////////////////////
 
 function handleQuesionToTheCrowd(data) {
-    console.log(data)
+    if (typeof data.text === "string") {
+        const tipDiv = document.querySelector("#tip");
+        tipDiv.innerText = data.text;
+    } else {
+        data.chart.forEach((percent, index) => {
+
+            buttons[index].innerText = `${buttons[index].innerText}:${percent}%`
+
+        })
+    }
 }
 function quesionToTheCrowd() {
     fetch('/help/crowd', {

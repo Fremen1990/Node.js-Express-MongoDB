@@ -127,6 +127,14 @@ function gameRoutes(app) {
 
     app.get('/help/crowd', (req, res) => {
 
+        if (quesionToTheCrowdUsed) {
+            return res.json({
+                text: "This tip has been used"
+            })
+
+        }
+        quesionToTheCrowdUsed = true;
+
         const chart = [10, 20, 30, 40];
 
         for (let i = chart.length - 1; i > 0; i--) {
@@ -136,6 +144,13 @@ function gameRoutes(app) {
             chart[i] += change;
             chart[i - 1] -= change;
         }
+
+        const question = questions[goodAnswers];
+
+        const { correctAnswer } = question;
+
+        [chart[3], chart[correctAnswer]] = [chart[correctAnswer], chart[3]]
+
 
         res.json({
             chart,
