@@ -23,19 +23,21 @@ function showAllToDos(toDosCollection) {
             console.log("error whiile listing", err);
         } else {
 
+
+
             const thingsToDo = toDos.filter(todo => !todo.done);
             const thingsToDoDone = toDos.filter(todo => todo.done);
 
             console.log('# List things to Do (not fiished)')
 
             for (const todo of thingsToDo) {
-                console.log(` - ${todo.ToDoTask}`);
+                console.log(` - [${todo._id}] ${todo.ToDoTask}`);
             }
 
             console.log("# List of things done (finished)");
 
             for (const todo of thingsToDoDone) {
-                console.log(` - ${todo.ToDoTask}`)
+                console.log(` -  [${todo._id}]${todo.ToDoTask}`)
             }
 
         }
@@ -43,6 +45,26 @@ function showAllToDos(toDosCollection) {
     });
 
 };
+
+function markAsDone(toDosCollection, id) {
+    toDosCollection.updateOne({
+        _id: mongo.ObjectID(id),
+    },
+        {
+            $set: {
+                done: true,
+            },
+        },
+
+
+
+        client.close()
+
+    )
+};
+
+
+
 
 function doTheToDo(toDosCollection) {
 
@@ -54,6 +76,9 @@ function doTheToDo(toDosCollection) {
             break;
         case "list":
             showAllToDos(toDosCollection);
+            break;
+        case "done":
+            markAsDone(toDosCollection, args[0]);
             break;
     };
 
