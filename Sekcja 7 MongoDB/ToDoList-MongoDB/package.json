@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mongo": "^0.1.0"
+    "mongo": "^0.1.0",
+    "node": "^15.2.1",
+    "nodemon": "^2.0.6"
   }
 }
